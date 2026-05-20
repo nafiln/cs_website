@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Connected Solutions — Integrated automation systems, fleet management and power infrastructure for modern vessels. Proven at sea.">
+<title>Connected Solutions — Maritime Automation Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --white:#ffffff;--off:#f4f3ef;--off2:#eeede8;
+  --ink:#0f0f0d;--ink2:#2e2e2b;--muted:#78786e;
+  --navy:#001f3f;--blue:#004fa3;--blue-lt:#0066cc;
+  --amber:#9a5f00;--sage:#2d5c3e;
+  --bd:#dddcd6;--bd2:#c8c7c0;
+}
+body{background:var(--white);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;height:62px;background:var(--white);border-bottom:1px solid var(--bd)}
+.logo{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.logo-mark{width:28px;height:28px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.04em}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--ink2);font-size:.8rem;transition:color .2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;padding:.48rem 1.3rem;font-size:.78rem;font-weight:500;transition:background .2s;border:none;cursor:pointer}
+.nav-cta:hover{background:var(--navy)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--ink)}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:700;color:var(--ink)}
+.mob-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;background:none;border:none;color:var(--muted);cursor:pointer}
+
+/* ── CERT BAR ── */
+.cert-bar{background:var(--off);border-bottom:1px solid var(--bd);padding:.9rem 3.5rem;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.cb-lbl{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.cb-sep{width:1px;height:14px;background:var(--bd2)}
+.cb-list{display:flex;gap:2rem;flex-wrap:wrap;align-items:center}
+.cb-item{font-family:'Libre Baskerville',serif;font-size:.8rem;font-weight:600;color:var(--bd2);transition:color .3s}
+.cb-item:hover{color:var(--muted)}
+
+/* ── SHARED PHOTO STYLES ── */
+/* All photos use object-fit:cover so swapping src is all you need */
+.photo-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+/* Overlay caption sitting on top of photo */
+.photo-tag{
+  position:absolute;bottom:1.5rem;left:1.5rem;z-index:3;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.15);
+  padding:.35rem .85rem;
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.75);font-weight:500;
+  pointer-events:none;
+}
+
+/* ── HERO ── */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;border-bottom:1px solid var(--bd)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 3.5rem;background:var(--white)}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;display:flex;align-items:center;gap:.7rem}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--blue)}
+.hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(2.6rem,4.5vw,4.4rem);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.hero-title em{font-style:italic;color:var(--blue)}
+.hero-body{color:var(--muted);font-size:.93rem;line-height:1.88;max-width:420px;margin-top:1.5rem}
+.hero-body strong{color:var(--ink);font-weight:500}
+.hero-actions{display:flex;align-items:center;gap:1.2rem;margin-top:2rem;flex-wrap:wrap}
+.btn-primary{background:var(--blue);color:#fff;padding:.85rem 2rem;font-size:.85rem;font-weight:500;transition:background .2s;display:inline-block;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--navy)}
+.btn-secondary{color:var(--blue);font-size:.85rem;font-weight:400;border-bottom:1px solid rgba(0,79,163,.35);padding-bottom:1px;transition:opacity .2s;display:inline-block}
+.btn-secondary:hover{opacity:.65}
+/* PHOTO 1 — hero right */
+.hero-right{position:relative;overflow:hidden;min-height:500px}
+/* dark gradient so text/tag is readable over any photo */
+.hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.08) 0%,transparent 40%),linear-gradient(to top,rgba(0,0,0,.3) 0%,transparent 40%);pointer-events:none;z-index:2}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--blue)}
+.st{padding:2rem;border-right:1px solid rgba(255,255,255,.1);text-align:center}
+.st:last-child{border-right:none}
+.st-n{font-family:'Libre Baskerville',serif;font-size:2.4rem;font-weight:700;color:#fff;display:block;line-height:1}
+.st-l{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.35rem;display:block}
+
+/* ── TIER SHARED ── */
+.tier{padding:5.5rem 3.5rem;border-bottom:1px solid var(--bd)}
+.tier:last-of-type{border-bottom:none}
+.tier-flag{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:1.8rem}
+.tf-num{font-family:'Libre Baskerville',serif;font-size:.8rem;font-weight:700;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.t1 .tf-num{background:var(--blue)}.t2 .tf-num{background:var(--amber)}.t3 .tf-num{background:var(--sage)}
+.tf-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.t1 .tf-label{color:var(--blue)}.t2 .tf-label{color:var(--amber)}.t3 .tf-label{color:var(--sage)}
+.tier-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:3.5rem}
+.ti-eyebrow{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.55rem}
+.ti-title{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.08;letter-spacing:-.015em}
+.t1 .ti-title span{color:var(--blue)}.t2 .ti-title span{color:var(--amber)}.t3 .ti-title span{color:var(--sage)}
+.ti-desc{color:var(--muted);font-size:.88rem;line-height:1.88}
+.ti-desc strong{color:var(--ink);font-weight:500}
+
+/* ── T1 IAS ── */
+.t1{background:var(--white)}
+
+/* Featured card — PHOTO 2 on right */
+.ias-featured{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--bd);margin-bottom:1px}
+.iasf-text{
+  padding:3rem;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.iasf-num{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.5rem}
+.iasf-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;line-height:1.15;color:#fff}
+.iasf-title em{font-style:italic;color:#6ba3ff}
+.iasf-body{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.8;margin-top:1.5rem}
+.iasf-body strong{color:#fff;font-weight:500}
+.iasf-tag{margin-top:2rem;display:inline-block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:rgba(255,255,255,.45);padding:.28rem .65rem;font-weight:500;align-self:flex-start}
+/* PHOTO 2 slot */
+.iasf-photo{position:relative;overflow:hidden;min-height:340px}
+.iasf-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35) 0%,transparent 50%);pointer-events:none;z-index:2}
+
+/* IAS rows */
+.ias-rows{border:1px solid var(--bd);border-top:none}
+.ias-row{display:grid;grid-template-columns:64px 1fr 1.5fr 100px;align-items:center;gap:2.5rem;padding:1.6rem 2rem;border-bottom:1px solid var(--bd);transition:background .2s}
+.ias-row:last-child{border-bottom:none}
+.ias-row:hover{background:var(--off)}
+.ar-num{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:rgba(0,79,163,.15)}
+.ar-name{font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:500;color:var(--ink)}
+.ar-desc{font-size:.79rem;color:var(--muted);line-height:1.62}
+.ar-badge{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;background:#ddeaf8;color:var(--blue);padding:.22rem .6rem;font-weight:500;white-space:nowrap;text-align:center}
+
+/* ── T2 FLEET ── */
+.t2{background:var(--off)}
+
+/* PHOTO 3 — fleet banner */
+.fleet-banner{position:relative;overflow:hidden;height:300px;margin-bottom:3rem}
+.fleet-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.4) 0%,transparent 55%);pointer-events:none;z-index:2}
+
+.fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--bd)}
+.fleet-card{padding:2.5rem;border-right:1px solid var(--bd);background:var(--white);position:relative;overflow:hidden;transition:background .2s}
+.fleet-card:last-child{border-right:none}
+.fleet-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.fleet-card:hover{background:#fdf8f0}
+.fleet-card:hover::after{transform:scaleX(1)}
+.fc-num{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:500;margin-bottom:.9rem}
+.fc-name{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:.7rem;line-height:1.25}
+.fc-desc{font-size:.8rem;color:var(--muted);line-height:1.75}
+.fc-note{font-size:.72rem;color:var(--bd2);margin-top:1rem;font-style:italic}
+
+/* ── T3 POWER ── */
+.t3{background:var(--white)}
+.power-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.power-card{border:1px solid var(--bd);overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.power-card:hover{border-color:rgba(45,92,62,.35);box-shadow:0 4px 24px rgba(45,92,62,.07)}
+.power-card::before{content:'';display:block;width:100%;height:3px;background:var(--sage);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.power-card:hover::before{transform:scaleX(1)}
+
+/* PHOTOS 4 & 5 — power card tops */
+.pc-photo{position:relative;overflow:hidden;height:210px}
+.pc-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.3) 0%,transparent 50%);pointer-events:none;z-index:2}
+
+.pc-body{padding:2.5rem;background:var(--white);position:relative;overflow:hidden}
+.pc-ghost{font-family:'Libre Baskerville',serif;font-size:5.5rem;font-weight:700;font-style:italic;color:rgba(45,92,62,.04);line-height:1;position:absolute;bottom:-.5rem;right:1.5rem;pointer-events:none}
+.pc-num{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:.9rem}
+.pc-name{font-family:'Libre Baskerville',serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:.7rem;line-height:1.2}
+.pc-desc{font-size:.82rem;color:var(--muted);line-height:1.8;max-width:360px;position:relative;z-index:1}
+.pc-note{margin-top:1.5rem;font-size:.72rem;color:rgba(45,92,62,.7);background:rgba(45,92,62,.07);padding:.4rem .75rem;display:inline-block;font-weight:500;position:relative;z-index:1}
+
+/* ── CLOSING ── */
+.closing{display:grid;grid-template-columns:1fr 1fr;min-height:380px}
+/* PHOTO 6 — closing left */
+.closing-photo{position:relative;overflow:hidden}
+.closing-photo::after{content:'';position:absolute;inset:0;background:rgba(0,15,35,.55);pointer-events:none;z-index:2}
+.closing-overlay{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:3.5rem}
+.co-tag{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.75rem}
+.co-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:#fff;line-height:1.15}
+.co-title em{font-style:italic;color:#6ba3ff}
+
+.closing-right{background:var(--ink);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
+.cr-body{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.85;max-width:380px;margin-bottom:2rem}
+.cr-body strong{color:#fff;font-weight:500}
+.btn-white{background:#fff;color:var(--ink);padding:.9rem 2.2rem;font-size:.85rem;font-weight:500;display:inline-block;transition:opacity .2s;white-space:nowrap;margin-bottom:1rem}
+.btn-white:hover{opacity:.88}
+.btn-ghost-w{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);padding:.9rem 2.2rem;font-size:.85rem;display:inline-block;transition:all .2s;white-space:nowrap}
+.btn-ghost-w:hover{border-color:rgba(255,255,255,.6);color:#fff}
+.cr-note{font-size:.72rem;color:rgba(255,255,255,.25);margin-top:1.5rem}
+
+/* ── FOOTER ── */
+footer{background:var(--off);border-top:1px solid var(--bd);padding:2rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Libre Baskerville',serif;font-size:.9rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:9px}
+.footer-logo .logo-mark{width:24px;height:24px;font-size:.55rem}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:.75rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--ink)}
+footer p{font-size:.73rem;color:var(--bd2)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .65s,transform .65s}
+.reveal.on{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 1.5rem}.nav-links{display:none}.hamburger{display:flex}
+  .cert-bar{padding:.9rem 1.5rem;gap:1.5rem}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-right{height:300px}
+  .hero-left{padding:3.5rem 1.5rem}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .st:nth-child(2){border-right:none}
+  .tier{padding:4rem 1.5rem}
+  .tier-intro{grid-template-columns:1fr;gap:1.5rem}
+  .ias-featured{grid-template-columns:1fr}
+  .iasf-photo{min-height:220px}
+  .ias-sub-grid{grid-template-columns:1fr}
+  .fleet-card-photo{height:140px}
+  .fleet-banner{height:200px}
+  .fleet-grid{grid-template-columns:1fr}
+  .fleet-card{border-right:none;border-bottom:1px solid var(--bd)}
+  .fleet-card:last-child{border-bottom:none}
+  .power-grid{grid-template-columns:1fr}
+  .closing{grid-template-columns:1fr}
+  .closing-photo{height:280px}
+  .closing-right{padding:3.5rem 1.5rem}
+  footer{padding:2rem 1.5rem}
+}
+@media(max-width:500px){
+  .stats{grid-template-columns:1fr 1fr}
+  .st{border-right:none!important;border-bottom:1px solid rgba(255,255,255,.1)}
+  .cb-sep{display:none}
+}
+
+/* ── IAS SUB-GRID — 2x2 photo cards ── */
+.ias-sub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd);margin-top:1px}
+.ias-sub-card{background:var(--white);overflow:hidden;transition:box-shadow .25s}
+.ias-sub-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.isc-photo{position:relative;overflow:hidden;height:200px}
+.isc-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.28) 0%,transparent 55%);pointer-events:none;z-index:2}
+.isc-body{padding:1.8rem 2rem}
+.isc-num{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:500;display:block;margin-bottom:.6rem}
+.isc-name{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;line-height:1.2}
+.isc-desc{font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:.9rem}
+.isc-badge{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:#ddeaf8;color:var(--blue);padding:.2rem .55rem;font-weight:500}
+
+/* ── FLEET CARDS WITH PHOTO TOP ── */
+.fleet-card-photo{position:relative;overflow:hidden;height:170px}
+.fleet-card-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.3) 0%,transparent 55%);pointer-events:none;z-index:2}
+</style>
+</head>
+<body>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mob-close" id="closeMenu">✕</button>
+  <a href="#ias" class="mob-lnk">Automation</a>
+  <a href="#fleet" class="mob-lnk">Fleet</a>
+  <a href="#power" class="mob-lnk">Power</a>
+  <a href="mailto:info@connectedsolutions.com" class="mob-lnk">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><div class="logo-mark">CS</div>Connected Solutions</a>
+  <ul class="nav-links">
+    <li><a href="#ias">Automation Systems</a></li>
+    <li><a href="#fleet">Fleet Management</a></li>
+    <li><a href="#power">Power & Energy</a></li>
+  </ul>
+  <a href="mailto:info@connectedsolutions.com" class="nav-cta">Talk to an Engineer</a>
+  <button class="hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- CERT BAR -->
+<div class="cert-bar">
+  <span class="cb-lbl">Approved & Compliant</span>
+  <div class="cb-sep"></div>
+  <div class="cb-list">
+    <span class="cb-item">DNV</span>
+    <span class="cb-item">Lloyd's Register</span>
+    <span class="cb-item">Bureau Veritas</span>
+    <span class="cb-item">IMO MARPOL</span>
+    <span class="cb-item">SOLAS</span>
+    <span class="cb-item">IEC 61508</span>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Integrated Maritime Automation</div>
+    <h1 class="hero-title">
+      The Vessel<br>
+      Doesn't Stop.<br>
+      <em>Neither Do We.</em>
+    </h1>
+    <p class="hero-body">
+      Connected Solutions delivers <strong>integrated automation systems</strong> for modern vessels — alarm management, process control, fleet monitoring and zero-emission power, unified in one certified platform.
+    </p>
+    <div class="hero-actions">
+      <a href="#ias" class="btn-primary">Explore Our Systems</a>
+      <a href="mailto:info@connectedsolutions.com" class="btn-secondary">Talk to an engineer →</a>
+    </div>
+  </div>
+
+  <!--
+    PHOTO 1 — Hero vessel shot
+    Replace src with your own image. Recommended: offshore vessel at sea, bow-on or 3/4 angle.
+    Unsplash source used as placeholder (free, no attribution required for prototyping).
+  -->
+  <div class="hero-right">
+    <img class="photo-img"
+      src="./img/Hero_vessel.png"
+      alt="Integrated Maritime Automation - Connected Solutions">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="st"><span class="st-n">10</span><span class="st-l">Integrated Modules</span></div>
+  <div class="st"><span class="st-n">50+</span><span class="st-l">Vessels Equipped</span></div>
+  <div class="st"><span class="st-n">24/7</span><span class="st-l">Live Fleet Monitoring</span></div>
+  <div class="st"><span class="st-n">IMO</span><span class="st-l">Compliant Platform</span></div>
+</div>
+
+<!-- ══════════════════════════
+     TIER 1 — IAS
+══════════════════════════════ -->
+<section id="ias" class="tier t1">
+
+  <div class="tier-flag">
+    <span class="tf-num">1</span>
+    <span class="tf-label">Core Platform</span>
+  </div>
+
+  <div class="tier-intro reveal">
+    <div>
+      <p class="ti-eyebrow">What we build</p>
+      <h2 class="ti-title">Integrated Automation<br><span>System</span></h2>
+    </div>
+    <p class="ti-desc">Five interconnected modules that give operators <strong>complete control</strong> over every critical vessel system — from the alarm matrix and cargo handling to power management and emergency shutdown — through a single, unified, class-approved interface.</p>
+  </div>
+
+  <!-- Featured: Alarm & Event — dark text left, PHOTO 2 right -->
+  <div class="ias-featured reveal">
+    <div class="iasf-text">
+      <div>
+        <div class="iasf-num">01 — Integrated Automation System</div>
+        <div class="iasf-title">Alarm &<br><em>Event System</em></div>
+        <p class="iasf-body">The <strong>operational nerve centre</strong> of the vessel. Every digital and analog signal monitored in real time, every event logged — complete situational awareness for crew and shore teams at all times.</p>
+      </div>
+      <span class="iasf-tag">Core IAS Module</span>
+    </div>
+    <!--
+      PHOTO 2 — Bridge / control room
+      Replace src. Recommended: vessel bridge screens active, operator at station,
+      or close-up of alarm/control panel.
+    -->
+    <div class="iasf-photo">
+      <img class="photo-img"
+        src="./img/Bridge-Alarm&Event_System.png"
+        alt="Vessel bridge control room — Alarm & Event System - Connected Solutions">
+    </div>
+  </div>
+
+  <!-- Remaining IAS modules — 2x2 photo cards -->
+  <div class="ias-sub-grid">
+
+    <div class="ias-sub-card reveal">
+      <!-- PHOTO 3 — Process Automation & Control
+           Replace src with your image when ready -->
+      <div class="isc-photo">
+        <img class="photo-img"
+          src="./img/Process_Automation&Control_2.png"
+          alt="Valve and pipe automation control — Process Automation - Connected Solutions">
+        <div class="photo-tag">Process Automation</div>
+      </div>
+      <div class="isc-body">
+        <span class="isc-num">02 — IAS</span>
+        <div class="isc-name">Process Automation & Control</div>
+        <p class="isc-desc">Automate HVAC, PID regulators, valves, ballast and cargo systems through one unified control layer. Fully configurable to vessel type and operational profile.</p>
+        <span class="isc-badge">Core IAS</span>
+      </div>
+    </div>
+
+    <div class="ias-sub-card reveal">
+      <!-- PHOTO 4 — Power & Energy Management
+           Replace src with your image when ready -->
+      <div class="isc-photo">
+        <img class="photo-img"
+          src="./img/Power&Energy_Management.png"
+          alt="Vessel engine room power generation — Power & Energy Mgmt - Connected Solutions">
+        <div class="photo-tag">Power & Energy Mgmt</div>
+      </div>
+      <div class="isc-body">
+        <span class="isc-num">03 — IAS</span>
+        <div class="isc-name">Power & Energy Management</div>
+        <p class="isc-desc">Load-dependent genset start/stop, blackout prevention and recovery, reducible load handling, peak shaving and zero-emission modes.</p>
+        <span class="isc-badge">Core IAS</span>
+      </div>
+    </div>
+
+    <div class="ias-sub-card reveal">
+      <!-- PHOTO 5 — Emergency Shutdown System
+           Replace src with your image when ready -->
+      <div class="isc-photo">
+        <img class="photo-img"
+          src="./img/Emergency&Shutdown_System.png"
+          alt="Emergency shutdown control panel — Connected Solutions">
+        <div class="photo-tag">Emergency Shutdown</div>
+      </div>
+      <div class="isc-body">
+        <span class="isc-num">04 — IAS</span>
+        <div class="isc-name">Emergency Shutdown System</div>
+        <p class="isc-desc">Safety-critical shutdown of engines, energy storage, ventilation and fuel/gas lines. Engineered for absolute reliability under all operating conditions.</p>
+        <span class="isc-badge" style="background:#fff0f0;color:#8b1a1a">Safety</span>
+      </div>
+    </div>
+
+    <div class="ias-sub-card reveal">
+      <!-- PHOTO 6 — Performance Monitoring
+           Replace src with your image when ready -->
+      <div class="isc-photo">
+        <img class="photo-img"
+          src="./img/Performance_Monitoring_3.png"
+          alt="Performance analytics dashboard — Connected Solutions">
+        <div class="photo-tag">Performance Monitoring</div>
+      </div>
+      <div class="isc-body">
+        <span class="isc-num">05 — IAS</span>
+        <div class="isc-name">Performance Monitoring</div>
+        <p class="isc-desc">Real-time fuel consumption tracking with automatic operational recommendations to reduce running costs and meet emission targets.</p>
+        <span class="isc-badge" style="background:#f0f5e8;color:#2d5c1a">Analytics</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ══════════════════════════
+     TIER 2 — FLEET MANAGEMENT
+══════════════════════════════ -->
+<section id="fleet" class="tier t2">
+
+  <div class="tier-flag">
+    <span class="tf-num">2</span>
+    <span class="tf-label">Fleet Operations</span>
+  </div>
+
+  <div class="tier-intro reveal">
+    <div>
+      <p class="ti-eyebrow">Connecting vessel to shore</p>
+      <h2 class="ti-title">Fleet<br><span>Management</span></h2>
+    </div>
+    <p class="ti-desc">Three modules connecting your entire fleet to shore — <strong>live vessel data, cyber-hardened connectivity and automated reporting</strong> from any vessel, anywhere, via satellite.</p>
+  </div>
+
+  <!--
+    PHOTO 3 — Fleet / port aerial
+    Replace src. Recommended: port aerial with multiple vessels, or vessel at open sea horizon.
+  -->
+  <div class="fleet-banner reveal">
+    <img class="photo-img"
+      src="./img/Fleet_Banner_3.png"
+      alt="Port aerial view — Connected Solutions">
+    <div class="photo-tag">Fleet Management</div>
+  </div>
+
+  <div class="fleet-grid reveal">
+
+    <div class="fleet-card">
+      <!-- PHOTO 8 — Cyber Security
+           Replace src with your image when ready -->
+      <div class="fleet-card-photo">
+        <img class="photo-img"
+          src="./img/Cyber_Security_2.png"
+          alt="Network server rack cyber security — Connected Solutions">
+        <div class="photo-tag">Cyber Security</div>
+      </div>
+      <div style="padding:2rem">
+        <div class="fc-num">01 — Fleet</div>
+        <div class="fc-name">Cyber Security</div>
+        <p class="fc-desc">Firewall, network configuration, routing, anti-virus and anti-malware protection for all automation-to-server and vessel-to-shore connections. Hardened by design — not bolted on.</p>
+      </div>
+    </div>
+
+    <div class="fleet-card">
+      <!-- PHOTO 9 — Fleet Monitoring & Live Data
+           Replace src with your image when ready -->
+      <div class="fleet-card-photo">
+        <img class="photo-img"
+          src="./img/Fleet_Monitoring&Live_Data_2.png"
+          alt="Shore operations monitoring dashboard — Connected Solutions">
+        <div class="photo-tag">Fleet Monitoring</div>
+      </div>
+      <div style="padding:2rem">
+        <div class="fc-num">02 — Fleet</div>
+        <div class="fc-name">Fleet Monitoring & Live Data</div>
+        <p class="fc-desc">Monitor all vessels live via satellite. Machinery status, power data, alarm feeds and operational metrics — all visible from shore in one dashboard.</p>
+        <p class="fc-note">Satellite connection arranged separately.</p>
+      </div>
+    </div>
+
+    <div class="fleet-card">
+      <!-- PHOTO 10 — Report Generation
+           Replace src with your image when ready -->
+      <div class="fleet-card-photo">
+        <img class="photo-img"
+          src="./img/Report_Generation_2.png"
+          alt="Data reporting and compliance documents — Connected Solutions">
+        <div class="photo-tag">Report Generation</div>
+      </div>
+      <div style="padding:2rem">
+        <div class="fc-num">03 — Fleet</div>
+        <div class="fc-name">Report Generation</div>
+        <p class="fc-desc">Automated emission reports and fully customisable compliance reporting. Formatted and ready for IMO, flag state and charterer submission.</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ══════════════════════════
+     TIER 3 — POWER & ENERGY
+══════════════════════════════ -->
+<section id="power" class="tier t3">
+
+  <div class="tier-flag">
+    <span class="tf-num">3</span>
+    <span class="tf-label">Power Infrastructure</span>
+  </div>
+
+  <div class="tier-intro reveal">
+    <div>
+      <p class="ti-eyebrow">The infrastructure layer</p>
+      <h2 class="ti-title">Power &<br><span>Energy</span></h2>
+    </div>
+    <p class="ti-desc">Two modules enabling <strong>hybrid operation and zero-emission capability</strong> — lower installation cost, reduced engine wear and significant fuel savings across your fleet.</p>
+  </div>
+
+  <div class="power-grid">
+    <div class="power-card reveal">
+      <!--
+        PHOTO 4 — Energy Storage System
+        Replace src. Recommended: battery rack in engine room or ESS compartment.
+      -->
+      <div class="pc-photo">
+        <img class="photo-img"
+          src="./img/Energy_Storage_System_2.png"
+          alt="Energy storage system — Connected Solutions">
+        <div class="photo-tag">ESS installation</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-ghost">ESS</div>
+        <div class="pc-num">01 — Power</div>
+        <div class="pc-name">Energy Storage System</div>
+        <p class="pc-desc">Battery integration for hybrid or full zero-emission operation. Buffers load peaks, enables engine-off port operations and reduces engine maintenance cost and downtime.</p>
+        <span class="pc-note">Required for IAS zero-emission & peak shaving modes</span>
+      </div>
+    </div>
+
+    <div class="power-card reveal">
+      <!--
+        PHOTO 5 — DC Grid System
+        Replace src. Recommended: switchboard / DC distribution panel or engine room install.
+      -->
+      <div class="pc-photo">
+        <img class="photo-img"
+          src="./img/DC_Grid_System_2.png"
+          alt="DC Grid switchboard — Connected Solutions">
+        <div class="photo-tag">DC Grid installation</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-ghost">DC</div>
+        <div class="pc-num">02 — Power</div>
+        <div class="pc-name">DC Grid System</div>
+        <p class="pc-desc">A fully modular, cost-saving alternative to traditional AC power distribution. Lower installation overhead, greater flexibility and seamless energy storage integration.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ CLOSING CTA ══ -->
+<section class="closing">
+  <!--
+    PHOTO 6 — Dramatic vessel / night / dusk
+    Replace src. Recommended: vessel at night or dusk, dramatic deck or bow shot.
+  -->
+  <div class="closing-photo">
+    <img class="photo-img"
+      src="./img/Closing_CTA.png"
+      alt="Vessel at sea — Connected Solutions">
+    <div class="closing-overlay">
+      <div class="co-title">Your Vessel.<br><em>Our Platform.</em></div>
+    </div>
+  </div>
+  <div class="closing-right">
+    <p class="cr-body">Describe your vessel's requirements and one of our engineers will come back with a <strong>tailored recommendation</strong> — no commitment required.</p>
+    <div>
+      <a href="mailto:info@connectedsolutions.com" class="btn-white" style="display:block;margin-bottom:1rem">Talk to an Engineer</a>
+      <a href="#ias" class="btn-ghost-w" style="display:block">Explore the Platform</a>
+    </div>
+    <p class="cr-note">Response within 24 hours · No commitment required</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo"><div class="logo-mark">CS</div>Connected Solutions</a>
+  <ul class="footer-links">
+    <li><a href="#ias">Automation</a></li>
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#power">Power & Energy</a></li>
+    <li><a href="mailto:info@connectedsolutions.com">Contact</a></li>
+  </ul>
+  <p>© 2025 Connected Solutions. All rights reserved.</p>
+</footer>
+
+<script>
+  document.getElementById('menuBtn').onclick = () => document.getElementById('mobileNav').classList.add('open');
+  document.getElementById('closeMenu').onclick = () => document.getElementById('mobileNav').classList.remove('open');
+  document.querySelectorAll('.mob-lnk').forEach(l => l.addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open')));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 4) * 0.09 + 's';
+        e.target.classList.add('on');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
